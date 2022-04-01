@@ -1022,6 +1022,8 @@ describe('src/cy/commands/waiting', () => {
             done()
           })
 
+          cy.visit('/fixtures/empty.html')
+
           cy
           .server()
           .route(/foo/, {}).as('getFoo')
@@ -1042,6 +1044,10 @@ describe('src/cy/commands/waiting', () => {
       })
 
       describe('alias argument', () => {
+        beforeEach(() => {
+          cy.visit('/fixtures/empty.html')
+        })
+
         it('is a parent command', () => {
           cy
           .server()
@@ -1133,6 +1139,10 @@ describe('src/cy/commands/waiting', () => {
       })
 
       describe('timeouts', function () {
+        beforeEach(() => {
+          cy.visit('/fixtures/empty.html')
+        })
+
         it('sets default requestTimeout', {
           requestTimeout: 199,
         }, function (done) {

@@ -1993,6 +1993,7 @@ describe('network stubbing', function () {
             .intercept(`${url}*`, (req) => {
               // @ts-ignore
               req.on(eventName, (res) => {
+                res.headers['content-type'] = 'application/json'
                 res.send({
                   statusCode: 200,
                   fixture: 'valid.json',
@@ -2690,6 +2691,7 @@ describe('network stubbing', function () {
 
           return Promise.delay(delay)
           .then(() => {
+            res.headers['content-type'] = 'text/plain'
             res.send('Promise.delay worked')
           })
         })
@@ -2733,6 +2735,7 @@ describe('network stubbing', function () {
         req.reply((res) => {
           this.start = Date.now()
 
+          res.headers['content-type'] = 'text/plain'
           res.setThrottle(kbps).send(payload)
         })
       }).then(() => {
@@ -2757,6 +2760,7 @@ describe('network stubbing', function () {
         req.reply((res) => {
           this.start = Date.now()
 
+          res.headers['content-type'] = 'text/plain'
           res.setThrottle(kbps).setDelay(delay).send({
             statusCode: 200,
             body: payload,
@@ -2931,6 +2935,7 @@ describe('network stubbing', function () {
       it('res.send(body)', function () {
         cy.intercept('/custom-headers*', function (req) {
           req.reply((res) => {
+            res.headers['content-type'] = 'text/plain'
             res.send('baz')
           })
         })
@@ -2987,6 +2992,7 @@ describe('network stubbing', function () {
       it('res.send(status, body)', function (done) {
         cy.intercept('/custom-headers*', function (req) {
           req.reply((res) => {
+            res.headers['content-type'] = 'text/plain'
             res.send(777, 'bar')
           })
         })
@@ -3049,6 +3055,7 @@ describe('network stubbing', function () {
 
         cy.intercept(`${url}*`, function (req) {
           req.reply((res) => {
+            res.headers['content-type'] = 'application/json'
             res.send({
               statusCode: 200,
               fixture: 'valid.json',
@@ -3092,6 +3099,7 @@ describe('network stubbing', function () {
           req.reply((res) => {
             this.start = Date.now()
 
+            res.headers['content-type'] = 'text/plain'
             // ensure .throttle and .delay are overridden
             res.setThrottle(1e6).setDelay(1).send({
               statusCode: 200,
