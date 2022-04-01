@@ -32,7 +32,6 @@ describe('e2e multi domain errors', () => {
     expectedExitCode: 1,
     config: {
       experimentalMultiDomain: true,
-      experimentalSessionSupport: true,
     },
     async onRun (exec) {
       const res = await exec()

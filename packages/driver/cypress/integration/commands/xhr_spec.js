@@ -3,7 +3,7 @@ const { assertLogLength } = require('../../support/utils')
 const { _, $, Promise } = Cypress
 
 describe('src/cy/commands/xhr', () => {
-  before(() => {
+  beforeEach(function () {
     cy
     .visit('/fixtures/jquery.html')
     .then(function (win) {
@@ -14,9 +14,7 @@ describe('src/cy/commands/xhr', () => {
       this.head = h.prop('outerHTML')
       this.body = win.document.body.outerHTML
     })
-  })
 
-  beforeEach(function () {
     const doc = cy.state('document')
 
     $(doc.head).empty().html(this.head)

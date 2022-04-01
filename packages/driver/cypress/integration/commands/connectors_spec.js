@@ -3,15 +3,13 @@ const { _, Promise, $ } = Cypress
 
 describe('src/cy/commands/connectors', () => {
   describe('with jquery', () => {
-    before(() => {
+    beforeEach(function () {
       cy
       .visit('/fixtures/jquery.html')
       .then(function (win) {
         this.body = win.document.body.outerHTML
       })
-    })
 
-    beforeEach(function () {
       const doc = cy.state('document')
 
       $(doc.body).empty().html(this.body)

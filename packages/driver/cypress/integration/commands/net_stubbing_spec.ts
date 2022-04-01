@@ -1011,7 +1011,7 @@ describe('network stubbing', function () {
       // using "hosts" setting in the "cypress.json" file
       const corsUrl = 'http://diff.foobar.com:3501/no-cors'
 
-      before(() => {
+      beforeEach(() => {
         cy.visit('http://127.0.0.1:3500/fixtures/dom.html')
       })
 
@@ -1070,7 +1070,7 @@ describe('network stubbing', function () {
       // a different domain from the page own domain
       const corsUrl = 'http://diff.foobar.com:3501/cors'
 
-      before(() => {
+      beforeEach(() => {
         cy.visit('http://127.0.0.1:3500/fixtures/dom.html')
       })
 
@@ -1278,6 +1278,8 @@ describe('network stubbing', function () {
 
     // @see https://github.com/cypress-io/cypress/issues/15841
     it('prevents requests from reaching destination server', function () {
+      cy.visit('http://localhost:3500/fixtures/empty.html')
+
       const v = String(Date.now())
 
       // this test creates server-side state via /set-var to test if requests are being sent or not

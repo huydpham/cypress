@@ -53,7 +53,7 @@ describe('src/cy/commands/waiting', () => {
     })
 
     describe('alias argument', () => {
-      before(() => {
+      beforeEach(() => {
         cy.visit('/fixtures/jquery.html')
       })
 
@@ -750,7 +750,7 @@ describe('src/cy/commands/waiting', () => {
     })
 
     describe('multiple alias arguments', () => {
-      before(() => {
+      beforeEach(() => {
         cy.visit('/fixtures/jquery.html')
       })
 
@@ -776,7 +776,7 @@ describe('src/cy/commands/waiting', () => {
     })
 
     describe('multiple separate alias waits', () => {
-      before(() => {
+      beforeEach(() => {
         cy.visit('/fixtures/jquery.html')
       })
 

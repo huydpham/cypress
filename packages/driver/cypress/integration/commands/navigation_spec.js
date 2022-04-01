@@ -6,15 +6,13 @@ const { _, Promise, $ } = Cypress
 
 describe('src/cy/commands/navigation', () => {
   context('#reload', () => {
-    before(() => {
+    beforeEach(function () {
       cy
       .visit('/fixtures/generic.html')
       .then(function (win) {
         this.body = win.document.body.outerHTML
       })
-    })
 
-    beforeEach(function () {
       const doc = cy.state('document')
 
       this.win = cy.state('window')
@@ -971,7 +969,7 @@ describe('src/cy/commands/navigation', () => {
     })
 
     describe('location getter overrides', () => {
-      before(() => {
+      beforeEach(function () {
         cy
         .visit('/fixtures/jquery.html?foo=bar#dashboard?baz=quux')
         .window().as('win').then((win) => {
@@ -980,9 +978,7 @@ describe('src/cy/commands/navigation', () => {
           // overriding the location getters
           expect(win.location.href).to.include('/fixtures/jquery.html?foo=bar#dashboard?baz=quux')
         })
-      })
 
-      beforeEach(function () {
         this.win = cy.state('window')
 
         this.eq = (attr, str) => {
